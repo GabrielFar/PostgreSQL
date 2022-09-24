@@ -1,20 +1,20 @@
 --pessoas
 
 CREATE TABLE corretor(
-	codCorr int primary key not null,
+	codCorr int primary key,
 	nome varchar(35) not null,
 	licença varchar(35), 
 	telefone varchar(35)
 );
 
 CREATE TABLE proprietario(
-	codProp int primary key not null,
+	codProp int primary key,
 	nome varchar(35) not null, 
 	telefone varchar(35)
 );
 
 CREATE TABLE inquilino(
-	codInq int primary key not null,
+	codInq int primary key,
 	nome varchar(35) not null,
 	cpf varchar(20) not null
 );
@@ -22,7 +22,7 @@ CREATE TABLE inquilino(
 -- Imovel
 
 CREATE TABLE imovel(
-	codImovel int primary key not null,
+	codImovel int primary key,
 	descricao varchar(100),
 	codProp int REFERENCES proprietario(CodProp),
 	valorAluguel real not null,
@@ -30,7 +30,7 @@ CREATE TABLE imovel(
 );
 
 CREATE TABLE aluguel(
-	codAlu int primary key not null,
+	codAlu int primary key,
 	codInq int not null REFERENCES inquilino(codInq),
 	codImo int not null REFERENCES imovel(codImovel),
 	codCorr int not null REFERENCES corretor(codCorr),
@@ -41,15 +41,26 @@ CREATE TABLE aluguel(
 
 -- Junção de Tabelas
 
-CREATE TABLE corrInq(
+CREATE TABLE corrInqu(
 	codInq int not null REFERENCES inquilino(codInq),
 	codCorr int not null REFERENCES corretor(codCorr)
 );
+alter table corrinqu add primary key(codcorr, codinq); 
 
 CREATE TABLE corrProp(
 	codCorr int not null REFERENCES corretor(codCorr),
 	codProp int not null REFERENCES proprietario(codProp)
 );
+alter table corrprop add primary key(codcorr, codprop);
+
+--------------------Comandos para exclusão das tabelas--------------------
+--drop table corrprop; 
+--drop table corrinqu; 
+--drop table aluguel; 
+--drop table imovel; 
+--drop table inquilino; 
+--drop table proprietario; 
+--drop table corretor; 
 
 ---------------------------Inserção de Dados---------------------------
 --       Pessoas
@@ -109,11 +120,11 @@ insert into corrprop values(5, 5);
 
 select * from corrprop;
 
--- CorrInq
-insert into corrinq values(1, 1);
-insert into corrinq values(2, 2);
-insert into corrinq values(3, 3);
-insert into corrinq values(4, 4);
-insert into corrinq values(5, 5);
+-- CorrInqu
+insert into corrinqu values(1, 1);
+insert into corrinqu values(2, 2);
+insert into corrinqu values(3, 3);
+insert into corrinqu values(4, 4);
+insert into corrinqu values(5, 5);
 
-select * from corrinq;
+select * from corrinqu;
