@@ -38,5 +38,5 @@ and c.nome = 'Alan Moore'
 
 -- 9
 
-select inq.nome from inquilino inq, aluguel a, imovel im where
-inq.codinq = a.codinq and a.codimo = im.codimo and im.valorauguel > 5000
+select inq.nome from inquilino inq, aluguel a where
+inq.codinq = a.codinq and a.valorauguel > 5000
