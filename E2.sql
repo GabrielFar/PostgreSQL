@@ -18,7 +18,7 @@ where aluguel.codinq = inquilino.codinq and aluguel.codcorr = corretor.codcorr
 
 -- 5
 
-select count(imovel.alugado) from imovel, corretor where corretor.licenca = 'LC587' and imovel.alugado = true
+select count(imovel.alugado) from imovel, corretor where corretor.licenca = 'LC587'
 
 -- 6
 
